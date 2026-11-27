@@ -1,0 +1,11 @@
+# Microhouse Livecoding
+
+> Playable Strudel microhouse scores, synth and groove presets, and a method for agent-assisted production and listening comparisons.
+
+- [Project site](https://jeremybboy.github.io/microhouse-livecoding/)
+- [Production method](https://github.com/jeremybboy/microhouse-livecoding/blob/main/docs/method.md)
+- [Score structure and cueing](https://github.com/jeremybboy/microhouse-livecoding/blob/main/docs/architecture.md)
+- [Microhouse Producer skill](https://github.com/jeremybboy/microhouse-livecoding/blob/main/skills/microhouse-producer/SKILL.md)
+- [Test 1 · Triangle keys](projects/test-1.strudel)
+- [Test 2 · FM keys](projects/test-2-fm-keys.strudel)
+- [Preset source files](https://github.com/jeremybboy/microhouse-livecoding/tree/main/docs/presets)

@@ -1,0 +1,80 @@
+// @title Test 1
+// Between the Steps — original 6:00 microhouse arrangement
+// Live cue: change cueBar and click Update while playing.
+// 33 first chord | 89 breakdown | 97 full groove | 161 outro
+const cueBar = 1;
+setcpm(122/4);
+
+const kick = s("bd*4").gain(.7);
+const snare = s("~ sd ~ sd").hpf(1450).gain(.40);
+const hats = s("[~ hh:0] [~ hh:1] [~ hh:0] [~ hh:2]")
+  .late("0 .004 .001 .006").clip(".48 .58 .46 .65")
+  .attack(.06).release(.035).hpf(620).lpf(9300).pan(.54).gain(.3);
+const drums = stack(kick, snare, hats);
+
+const sub = p => note(p).s("sine").attack(.006).decay(.13)
+  .sustain(.12).release(.035).clip(.75).gain(.34);
+const bass = sub("<[~ c2 ~ [~ c2] ~ g2 ~ ~] [~ c2 ~ [~ eb2] ~ ~ ~ g2]>");
+const bassTurn = sub("<[~ c2 ~ [~ c2] ~ g2 ~ ~] [~ c2 ~ [~ eb2] ~ ~ ~ g2] [~ c2 ~ [~ c2] ~ g2 ~ ~] [~ c2 ~ [~ g2] ~ ~ ~ bb1]>");
+
+const keys = p => note(p).s("triangle").hpf(135)
+  .lpf(sine.range(1050,1900).slow(8))
+  .attack(.008).decay(.16).sustain(0).release(.06)
+  .delay(.80).delaysync(3/16).delayfeedback(.70).room(.18).orbit(2).gain(.32);
+const chord = keys("<[~ [eb3,bb3,d4,g4] ~ ~ ~ ~ ~ ~] [~ ~ ~ ~ ~ [eb3,bb3,d4,g4] ~ ~]>");
+const chordTurn = keys("<[~ [eb3,bb3,d4,g4] ~ ~ ~ ~ ~ ~] ~ [~ [eb3,bb3,d4,g4] ~ ~ ~ ~ ~ ~] [~ ~ ~ ~ ~ [eb3,bb3,d4,f4] ~ ~]>");
+
+const rim = s("<[~ ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ rim ~ ~ ~ ~] [~ ~ ~ rim ~ ~ ~ ~ ~ ~ ~ ~ ~ ~ rim ~]>")
+  .late(.008).hpf(950).lpf(4800).clip(.68).pan(.43).gain(.13);
+const reply = note("<~ [~ ~ d5 ~ ~ ~ ~ ~] ~ [~ ~ ~ ~ ~ [g4 bb4] ~ ~]>")
+  .s("sine").attack(.007).decay(.095).sustain(0).release(.05)
+  .pan(.62).delay(.23).delaysync(1/8).delayfeedback(.18).room(.09).orbit(3).gain(.11);
+const haze = note("<~ [eb4,g4,bb4,d5]>").s("triangle").hpf(190).lpf(1100)
+  .attack(.5).decay(.55).sustain(.20).release(.65).room(.33).orbit(4).gain(.045);
+
+const sections = [
+  [8, stack(kick,hats.velocity(.62))],                         // 1   Mix-in
+  [8, stack(drums,rim.velocity(.65))],                         // 9   Backbeat
+  [16, stack(drums,bass)],                                     // 17  Bass entry
+  [16, stack(drums,bass,chord)],                               // 33  First chord pass
+  [16, stack(drums,bass,chord,rim)],                           // 49  Percussion reply
+  [16, stack(drums,bassTurn,chordTurn,rim,reply.velocity(.7))], // 65  Phrase variation
+  [8, stack(kick,snare,hats.velocity(.72),bass.velocity(.65),rim)], // 81  Strip back
+  [4, stack(chord.velocity(.72),haze)],                        // 89  Break
+  [4, stack(hats.velocity(.60),rim.velocity(.50),haze)],       // 93  Pulse returns
+  [16, stack(drums,bass,chord,rim,reply.velocity(.86))],        // 97  Full pocket
+  [16, stack(drums,bassTurn,chordTurn,rim,reply)],              // 113 Second peak
+  [16, stack(drums,bass,chord,rim)],                           // 129 Motif settles
+  [16, stack(drums,bassTurn,chord.velocity(.76),reply.velocity(.68))], // 145 Last theme
+  [8, stack(drums,bass.velocity(.78),rim)],                    // 161 Bass outro
+  [8, stack(drums,rim.velocity(.62))],                         // 169 Drum outro
+  [6, stack(kick,hats.velocity(.65))],                         // 177 Thinning hats
+  [1, s("bd ~ ~ ~").gain(.48)]                                 // 183 Last downbeat
+];
+const totalBars = sections.reduce((total, section) => total + section[0], 0);
+const song = arrange(...sections).filterWhen(t => t >= 0 && t < totalBars);
+
+if (!Number.isInteger(cueBar) || cueBar < 1 || cueBar > totalBars) {
+  throw new Error('cueBar must be a whole bar from 1 to 183');
+}
+
+const playing = getIsStarted();
+const clock = playing ? getTime() : 0;
+const previous = playing ? getPattern()?.betweenTheStepsCue : undefined;
+const oldCue = previous ?? { bar: 1, from: 0, before: 0, after: 0 };
+let cue = { bar: cueBar, from: 0, before: 0, after: cueBar - 1 };
+
+if (playing) {
+  if (oldCue.bar === cueBar) {
+    cue = oldCue;
+  } else {
+    // Leave a little lookahead so the downbeat can be scheduled.
+    const nextBar = Math.ceil(clock + .1);
+    const currentOffset = clock < oldCue.from ? oldCue.before : oldCue.after;
+    cue = { bar: cueBar, from: nextBar, before: currentOffset, after: cueBar - 1 - nextBar };
+  }
+}
+
+const comingIn = song.early(cue.after).filterWhen(t => t >= cue.from);
+const outgoing = song.early(cue.before).filterWhen(t => t < cue.from);
+Object.assign(stack(outgoing, comingIn), { betweenTheStepsCue: cue })

@@ -1,0 +1,5 @@
+// @title Alternating Closed Hats
+setcpm(122/4)
+s("[~ hh:0] [~ hh:1] [~ hh:0] [~ hh:2]")
+  .late("0 .004 .001 .006").clip(".48 .58 .46 .65")
+  .attack(.06).release(.035).hpf(620).lpf(9300).pan(.54).gain(.3)

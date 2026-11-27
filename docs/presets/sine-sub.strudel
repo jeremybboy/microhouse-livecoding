@@ -1,0 +1,5 @@
+// @title Dry Sine Sub
+setcpm(122/4)
+note("<[~ d2 ~ [~ d2] ~ a2 ~ ~] [~ d2 ~ [~ f2] ~ ~ ~ a2]>")
+  .s("sine").attack(.006).decay(.13)
+  .sustain(.12).release(.035).clip(.75).gain(.34)

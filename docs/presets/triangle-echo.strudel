@@ -1,0 +1,7 @@
+// @title Filtered Triangle Echo
+setcpm(122/4)
+note("<[~ [f3,c4,e4,a4] ~ ~ ~ ~ ~ ~] ~>")
+  .s("triangle").hpf(135).lpf(sine.range(1050,1900).slow(8))
+  .attack(.008).decay(.16).sustain(0).release(.06)
+  .delay(.80).delaysync(3/16).delayfeedback(.70).room(.18)
+  .orbit(2).gain(.32)

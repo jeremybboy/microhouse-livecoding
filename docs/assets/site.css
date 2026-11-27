@@ -1,0 +1,78 @@
+:root {
+  color-scheme: light;
+  --ink: #16251c;
+  --forest: #162e27;
+  --paper: #f4f0e5;
+  --green: #dce8ac;
+  --amber: #f3ce8f;
+  --line: #b6baa1;
+  font-family: system-ui, sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; font-size: 1rem; line-height: 1.58; }
+h1, h2, h3, p, figure { margin: 0; }
+h1, h2, h3, .brand { line-height: 1.06; }
+h1 { font-size: clamp(3.25rem, 7.7vw, 6rem); letter-spacing: -.047em; }
+h2 { font-size: clamp(2rem, 4.9vw, 3.35rem); letter-spacing: -.038em; }
+h3 { font-size: 1.25rem; letter-spacing: -.025em; }
+a { color: inherit; text-decoration-thickness: .08em; text-underline-offset: .22em; }
+a:hover { text-decoration-thickness: .15em; }
+a:focus-visible { outline: .2rem solid #a9580e; outline-offset: .23rem; }
+code, kbd { padding: .07rem .23rem; background: #e8e3d2; font-size: .9em; }
+.wrap { width: min(100% - 2.5rem, 68rem); margin-inline: auto; }
+.skip { position: absolute; top: -10rem; left: 1rem; padding: .5rem 1rem; background: var(--paper); z-index: 1; }
+.skip:focus { top: 1rem; }
+
+.masthead { border-bottom: 1px solid #547061; }
+.masthead, .hero { color: var(--paper); background: var(--forest); }
+.masthead .wrap, footer .wrap, nav { display: flex; align-items: center; flex-wrap: wrap; gap: .55rem 1.6rem; }
+.masthead .wrap { justify-content: space-between; min-height: 4.4rem; padding-block: .75rem; }
+.brand { font-weight: 750; text-decoration: none; }
+nav { font-size: .94rem; }
+.hero a:focus-visible, .masthead a:focus-visible { outline-color: var(--amber); }
+.hero .wrap { padding-block: clamp(3rem, 8vw, 6rem); display: grid; grid-template-columns: 1.2fr 1fr; gap: 3rem; align-items: center; }
+.hero p { max-width: 34ch; margin-block: 1.3rem 1.55rem; font-size: 1.17rem; }
+.button { display: inline-block; width: fit-content; padding: .65rem .95rem; background: var(--green); color: var(--forest); text-decoration: none; font-weight: 750; }
+.button:hover { background: var(--amber); }
+.button span { margin-left: .35rem; }
+.secondary { border: 1px solid var(--forest); }
+
+.groove { padding: 1.35rem; border: 1px solid #7f9788; }
+.groove figcaption { margin-bottom: .9rem; font: 700 1rem/1.3 system-ui, sans-serif; }
+.beat-head { display: grid; grid-template-columns: 4rem repeat(4, 1fr); color: #d0dbcc; font: .75rem/1.5 ui-monospace, monospace; }
+.beat-row { display: grid; grid-template-columns: 4rem 1fr; align-items: center; margin-block: .43rem; }
+.beat-row > span { font-size: .89rem; }
+.steps { display: grid; grid-template-columns: repeat(8, 1fr); gap: .2rem; }
+.steps i { background: #365247; height: 1.03rem; }
+.steps.kick i:nth-child(odd) { background: var(--green); }
+.steps.hat i:nth-child(even) { background: var(--amber); }
+.steps.snare i:nth-child(4n+3) { background: #d0dbcc; }
+.groove p { margin-block: .8rem 0; color: #d0dbcc; font-size: .88rem; }
+
+.content section { padding-block: clamp(2.65rem, 6vw, 4.5rem); border-bottom: 1px solid var(--line); }
+.content section:last-child { border: 0; }
+.intro { max-width: 66ch; margin-top: .8rem; }
+.project-grid, .presets { display: grid; grid-template-columns: 1fr 1fr; margin-top: 1.55rem; gap: 1rem; }
+.project { padding: 1.3rem; background: var(--green); }
+.project.fm { background: var(--amber); }
+article p { margin-top: .65rem; }
+.links { display: flex; flex-wrap: wrap; align-items: center; gap: .35rem 1rem; font-weight: 650; }
+.cue-note { margin-top: 1.2rem; max-width: 72ch; }
+.quiet { margin-top: .75rem; font-size: .92rem; }
+.presets article { padding: 1rem 0 .65rem; border-top: 1px solid var(--line); }
+.method { padding-left: 1.35rem; max-width: 68ch; }
+.method li { padding-left: .15rem; margin-block: .43rem; }
+.overview { display: block; width: 100%; height: auto; max-width: 58rem; margin-top: 1.4rem; }
+footer { padding-block: 1.2rem; background: #e8e3d2; font-size: .9rem; }
+
+@media (max-width: 47rem) {
+  .hero .wrap { grid-template-columns: 1fr; gap: 2rem; }
+  .groove { max-width: 30rem; }
+}
+@media (max-width: 36rem) {
+  .project-grid, .presets { grid-template-columns: 1fr; }
+  .overview { display: none; }
+}

@@ -3,20 +3,94 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="An independent microhouse production workflow using the Strudel livecoding editor.">
+  <meta name="description" content="Play two microhouse projects in Strudel, compare synth presets, and reuse the production workflow in your next session.">
+  <meta name="theme-color" content="#162e27">
   <title>Microhouse Livecoding</title>
-  <style>
-    body { margin: 3rem auto; padding: 0 1rem; max-width: 52rem; font: 1.15rem/1.6 system-ui, sans-serif; color: #171e19; background: #f4f0e5; }
-    a { color: #165640; text-underline-offset: .17em; }
-    img { width: 100%; height: auto; margin-top: 1rem; }
-  </style>
+  <link rel="stylesheet" href="assets/site.css">
+  <script type="module" src="assets/strudel-links.js"></script>
 </head>
 <body>
-  <main>
-    <h1>Microhouse Livecoding</h1>
-    <p>Build a loop in Strudel, compare one production choice by ear, and save the score with the decision.</p>
-    <p><a href="https://strudel.cc/">Open Strudel</a> · <a href="https://github.com/jeremybboy/microhouse-livecoding">View the source repository</a></p>
-    <img src="assets/repository-overview.svg" width="920" height="240" alt="Brief, playable loop, A/B audition, saved revision. Listening feeds the next loop revision.">
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="masthead">
+    <div class="wrap">
+      <a class="brand" href="./">Microhouse Livecoding</a>
+      <nav aria-label="Primary">
+        <a href="#projects">Projects</a>
+        <a href="#presets">Presets</a>
+        <a href="#workflow">Workflow</a>
+        <a href="https://github.com/jeremybboy/microhouse-livecoding">GitHub</a>
+      </nav>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="site-title">
+      <div class="wrap">
+        <div>
+          <h1 id="site-title">Microhouse<br>Livecoding</h1>
+          <p>A Strudel production notebook for building grooves, shaping synths, and hearing what a single change does to the track.</p>
+          <a class="button" href="#projects">Explore the test projects <span aria-hidden="true">↓</span></a>
+        </div>
+        <figure class="groove" aria-labelledby="groove-caption">
+          <figcaption id="groove-caption">The opening groove</figcaption>
+          <div class="beat-head" aria-hidden="true"><span></span><span>1</span><span>2</span><span>3</span><span>4</span></div>
+          <div class="beat-row"><span>Kick</span><div class="steps kick" aria-label="Kick on beats one, two, three and four"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div class="beat-row"><span>Hat</span><div class="steps hat" aria-label="Closed hat on each offbeat"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          <div class="beat-row"><span>Snare</span><div class="steps snare" aria-label="Snare on beats two and four, entering at bar nine"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div></div>
+          <p>Kick and offbeat hats from bar 1. Snare enters at bar 9.</p>
+        </figure>
+      </div>
+    </section>
+
+    <div class="wrap content">
+      <section id="projects" aria-labelledby="projects-title">
+        <h2 id="projects-title">Two tests, one arrangement</h2>
+        <p class="intro">Compare the triangle and FM chord voices in <cite>Between the Steps</cite>. Both tests run for six minutes at 122 BPM. Open either score and press Play in Strudel.</p>
+        <div class="project-grid">
+          <article class="project triangle" data-strudel>
+            <h3>Test 1 · Triangle keys</h3>
+            <p>A short, filtered triangle chord answers the rolling bass. Its dotted-eighth repeats carry across the gaps.</p>
+            <p class="links"><a href="projects/test-1.strudel" download>Download score</a></p>
+          </article>
+          <article class="project fm" data-strudel>
+            <h3>Test 2 · FM keys</h3>
+            <p>The same chord rhythm and voicing through a sine carrier with FM. Compare the attack and how the repeats sit against the hats.</p>
+            <p class="links"><a href="projects/test-2-fm-keys.strudel" download>Download score</a></p>
+          </article>
+        </div>
+        <p class="cue-note"><strong>Find a section while playing.</strong> Set <code>cueBar</code> near the top of either file and click Update in Strudel. Try <kbd>33</kbd> for the first chords, <kbd>89</kbd> for the break, <kbd>97</kbd> for the full groove, or <kbd>161</kbd> for the outro.</p>
+        <p class="quiet">You can also download a score and paste its contents into the <a href="https://strudel.cc/">Strudel editor</a>.</p>
+      </section>
+
+      <section id="presets" aria-labelledby="presets-title">
+        <h2 id="presets-title">Synth and groove presets</h2>
+        <p class="intro">Play each preset on its own, then transplant the voice into a project. Each file includes its oscillator or sample, envelope, and mix settings.</p>
+        <div class="presets">
+          <article data-strudel><h3>Dry sine sub</h3><p>Short gate and a two-bar answer leave space for the kick.</p><p class="links"><a href="presets/sine-sub.strudel" download>Download preset</a></p></article>
+          <article data-strudel><h3>Triangle echo</h3><p>A slow low-pass sweep and a dedicated echo orbit shape the stab.</p><p class="links"><a href="presets/triangle-echo.strudel" download>Download preset</a></p></article>
+          <article data-strudel><h3>FM keys</h3><p>A short modulation envelope shapes the attack on the same preset chord.</p><p class="links"><a href="presets/fm-keys.strudel" download>Download preset</a></p></article>
+          <article data-strudel><h3>Alternating hats</h3><p>Three closed-hat samples, small timing offsets, and varying gates.</p><p class="links"><a href="presets/closed-hats.strudel" download>Download preset</a></p></article>
+        </div>
+      </section>
+
+      <section id="workflow" aria-labelledby="workflow-title">
+        <h2 id="workflow-title">Build the next version</h2>
+        <p class="intro">Give the agent a baseline score, a musical role, and a timestamp or bar. Ask for one playable change and audition the same passage in both versions.</p>
+        <ol class="method">
+          <li><strong>Describe the feel.</strong> Name the part, its relationship to the groove, and what should stay fixed.</li>
+          <li><strong>Write a small edit.</strong> Keep the patch, note pattern, and arrangement separately editable.</li>
+          <li><strong>Audition and save.</strong> Match the playback level by ear, record the decision, and save the revised <code>.strudel</code> file beside its baseline.</li>
+        </ol>
+        <div class="links">
+          <a class="button secondary" href="https://github.com/jeremybboy/microhouse-livecoding/blob/main/skills/microhouse-producer/SKILL.md">Microhouse agent skill</a>
+          <a href="https://github.com/jeremybboy/microhouse-livecoding/blob/main/docs/method.md">Production method and settings</a>
+          <a href="https://github.com/jeremybboy/microhouse-livecoding/blob/main/docs/architecture.md">Score structure</a>
+        </div>
+        <img class="overview" src="assets/repository-overview.svg" width="920" height="240" alt="Brief to playable loop, A/B audition and saved revision. Listening feeds the next loop revision.">
+      </section>
+    </div>
   </main>
+  <footer>
+    <div class="wrap"><span>An independent Strudel project</span><a href="https://strudel.cc/learn/">Strudel documentation</a><a href="https://github.com/jeremybboy/microhouse-livecoding/blob/main/CONTRIBUTING.md">Contribute</a></div>
+  </footer>
 </body>
 </html>
