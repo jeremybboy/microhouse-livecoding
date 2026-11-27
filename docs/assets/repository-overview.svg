@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="920" height="240" viewBox="0 0 920 240" role="img" aria-labelledby="title desc">
+  <title id="title">From brief to saved score</title>
+  <desc id="desc">Turn a musical idea into a playable loop, compare two versions by ear, then save the score and the production decision.</desc>
+  <rect width="920" height="240" fill="#f4f0e5"/>
+  <text x="32" y="44" fill="#161d18" font-family="Arial, sans-serif" font-size="24" font-weight="700">From brief to saved score</text>
+  <path fill="#dce8ac" d="M32 72h169v95H32z"/>
+  <path fill="#183c31" d="M227 72h231v95H227z"/>
+  <path fill="#f3ce8f" d="M484 72h188v95H484z"/>
+  <path fill="#dce8ac" d="M698 72h190v95H698z"/>
+  <g stroke="#183c31" stroke-width="2">
+    <path d="M201 117h20M458 117h20M672 117h20"/>
+  </g>
+  <g fill="#183c31">
+    <path d="m217 112 9 5-9 5zM474 112l9 5-9 5zM688 112l9 5-9 5z"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#161d18">
+    <text x="48" y="107">Brief</text>
+    <text x="243" y="107" fill="#fffdf3">Playable loop</text>
+    <text x="500" y="107">A/B audition</text>
+    <text x="714" y="107">Saved revision</text>
+  </g>
+  <g font-family="Georgia, serif" font-size="15" fill="#28352b">
+    <text x="48" y="138">Feel, tempo, role</text>
+    <text x="243" y="138" fill="#fffdf3">Patterns, patch, cue</text>
+    <text x="500" y="138">One change at a time</text>
+    <text x="714" y="138">Score and decision</text>
+  </g>
+  <path d="M578 167v37H343v-31" fill="none" stroke="#695c40" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <path d="m339 178 4-8 4 8z" fill="#695c40"/>
+  <rect x="393" y="194" width="165" height="20" fill="#f4f0e5"/>
+  <text x="405" y="209" fill="#574b33" font-family="Georgia, serif" font-size="15">Revise after listening</text>
+</svg>
